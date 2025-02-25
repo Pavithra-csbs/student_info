@@ -20,11 +20,6 @@ class Attendance(models.Model):
     period7 = models.BooleanField(default=False)
     period8 = models.BooleanField(default=False)
 
-    class Attendance(models.Model):
-        name = models.CharField(max_length=255, null=True, blank=True)
-        status = models.BooleanField()  # 1 for Matched (Present), 0 for Not Found
-        timestamp = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return f"{self.name} - {'Present' if self.status else 'Absent'}"
     
@@ -36,11 +31,11 @@ class Attendance(models.Model):
     def __str__(self):
         return f"{self.student.name} - {self.date} - {self.total_present} periods attended"
 
-    class OnDuty(models.Model):
+    '''class OnDuty(models.Model):
         student = models.ForeignKey(Student, on_delete=models.CASCADE)
         date = models.DateField(auto_now_add = True)
         reason = models.CharField(max_length=255)
         def __str__(self):
-            return f"{self.student.username} - {self.date} - {self.reason}"
+            return f"{self.student.username} - {self.date} - {self.reason}"'''
 
 # Create your models here.
