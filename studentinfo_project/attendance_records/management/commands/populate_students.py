@@ -11,7 +11,7 @@ class Command(BaseCommand):
     "Aarav", "Bhavya", "Charan", "Dhruv", "Esha", 
     "Farhan", "Gauri", "Harsh", "Ishaan", "Jhanvi", 
     "Karthik", "Lavanya", "Mihir", "Nidhi", "Omkar", 
-    "Prisha", "Quasar", "Rohan", "Sneha", "Tanmay"
+    "Prisha", "Quasar", "Rohan", "Subiksha", "Tanmay"
 ]
 
         roll_numbers = [
