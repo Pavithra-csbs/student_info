@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "attendance_records",
-    "onduty",
 ]
+   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
