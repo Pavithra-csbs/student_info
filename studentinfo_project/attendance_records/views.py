@@ -133,5 +133,3 @@ def take_attendance(request):
     cap.release()
     cv2.destroyAllWindows()
     return redirect(reverse("attendance_records:index"))
-
-    

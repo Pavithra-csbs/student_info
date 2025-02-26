@@ -46,7 +46,6 @@
         <a href="{% url 'attendance_records:take_attendance' %}">
             <button type="button" class="btn btn-success">Start Attendance</button>
         </a>
-
         <!-- Date Display -->
         <div class="alert alert-light text-center fw-bold" role="alert">
             Date: <span id="currentDate"></span>
@@ -80,7 +79,7 @@
                                     {% elif student.attendance|slice:forloop.counter|last == 'A' %}absent
                                     {% else %}default-cell{% endif %}
                                     {% endif %}">
-                            {{ student.attendance|default:"A"|slice:forloop.counter|last }}
+                            {{ student.attendance|default:"-"|slice:forloop.counter|last }}
                         </td>
                         {% endfor %}
             
