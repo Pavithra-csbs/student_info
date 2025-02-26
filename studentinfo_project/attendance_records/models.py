@@ -11,6 +11,7 @@ class Student(models.Model):
 class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add = True)
+    status = models.CharField(max_length=10, choices=[("P", "Present"), ("A", "Absent")],default="A")
     period1 = models.BooleanField(default=False)
     period2 = models.BooleanField(default=False)
     period3 = models.BooleanField(default=False)

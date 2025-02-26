@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-mxzvrpk@npq6^kd3d7k(ri#a4%-!=srq0v3oc01^#q$+-*of7o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'attendance_db',
         'USER': 'postgres',
-        'PASSWORD': 'Pm2116',
+        'PASSWORD': 'postgresql',
         'HOST': 'localhost',
         'PORT': '5432',
     }
