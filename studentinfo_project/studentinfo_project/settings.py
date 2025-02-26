@@ -79,12 +79,17 @@ WSGI_APPLICATION = 'studentinfo_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'attendance_db',
+<<<<<<< HEAD
         'USER': 'postgres',
         'PASSWORD': 'postgresql',
+=======
+        'USER': 'root',
+        'PASSWORD': 'mysql',
+>>>>>>> c3f7a9a64b7a1cc891a080e9c17acf2eb25bf455
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 
@@ -132,6 +137,4 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/log_in/'
-LOGIN_REDIRECT_URL = '/home/'
-LOGOUT_REDIRECT_URL = '/'
+
