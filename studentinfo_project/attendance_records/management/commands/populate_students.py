@@ -17,5 +17,6 @@ class Command(BaseCommand):
 
 
         for student,roll_number in zip(students,roll_numbers):
-
+           
+            
             Student.objects.create(name=student,roll_number=roll_number)

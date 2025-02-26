@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
@@ -8,10 +7,12 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.name} ({self.roll_number})"
 
+
 class Attendance(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add = True)
-    status = models.CharField(max_length=10, choices=[("P", "Present"), ("A", "Absent")],default="A")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)  # Link Attendance to a Student
+    date = models.DateField(auto_now_add=True)
+
+    # Period-wise attendance tracking
     period1 = models.BooleanField(default=False)
     period2 = models.BooleanField(default=False)
     period3 = models.BooleanField(default=False)
@@ -21,22 +22,12 @@ class Attendance(models.Model):
     period7 = models.BooleanField(default=False)
     period8 = models.BooleanField(default=False)
 
-    def __str__(self):
-        return f"{self.name} - {'Present' if self.status else 'Absent'}"
-    
     @property
     def total_present(self):
-        return sum([self.period1, self.period2, self.period3, self.period4,
-                    self.period5, self.period6, self.period7, self.period8])
+        return sum([
+            self.period1, self.period2, self.period3, self.period4,
+            self.period5, self.period6, self.period7, self.period8
+        ])
 
     def __str__(self):
         return f"{self.student.name} - {self.date} - {self.total_present} periods attended"
-
-    '''class OnDuty(models.Model):
-        student = models.ForeignKey(Student, on_delete=models.CASCADE)
-        date = models.DateField(auto_now_add = True)
-        reason = models.CharField(max_length=255)
-        def __str__(self):
-            return f"{self.student.username} - {self.date} - {self.reason}"'''
-
-# Create your models here.

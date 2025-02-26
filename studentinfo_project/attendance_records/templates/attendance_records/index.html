@@ -22,7 +22,7 @@
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border-collapse: collapse;
-        } 
+        }
         .present { 
             background-color: #28a745 !important; 
             color: white !important; 
@@ -41,17 +41,16 @@
 </head>
 <body>
     <div class="container mt-4">
-        <!-- Page Header -->
         <h2 class="text-center mb-3">Attendance Tracking System</h2>
         <a href="{% url 'attendance_records:take_attendance' %}">
             <button type="button" class="btn btn-success">Start Attendance</button>
         </a>
-        <!-- Date Display -->
+
         <div class="alert alert-light text-center fw-bold" role="alert">
             Date: <span id="currentDate"></span>
         </div>
 
-        <!-- Attendance Table -->
+        <!-- Static Attendance Table -->
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-center">
                 <thead class="table-dark">
@@ -59,42 +58,39 @@
                         <th>S.NO.</th>
                         <th>STUDENT NAME</th>
                         <th>ROLL NUMBER</th>
-                        {% for i in "12345678" %}
-                        <th>Period {{ forloop.counter }}</th>
-                        {% endfor %}
-                        <th>TOTAL PRESENT</th>
+                        <th>Period 1</th>
+                        <th>Period 2</th>
+                        <th>Period 3</th>
+                        <th>Period 4</th>
+                        <th>Period 5</th>
+                        <th>Period 6</th>
+                        <th>Period 7</th>
+                        <th>Period 8</th>
+                        <th>Total Present</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for student in students %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ student.name }}</td>
-                        <td>{{ student.roll_number }}</td>
-            
-                        {# Ensure exactly 8 period columns #}
-                        {% for i in "12345678" %}
-                        <td class="{% if student.attendance|length >= forloop.counter %}
-                                    {% if student.attendance|slice:forloop.counter|last == 'P' %}present
-                                    {% elif student.attendance|slice:forloop.counter|last == 'A' %}absent
-                                    {% else %}default-cell{% endif %}
-                                    {% endif %}">
-                            {{ student.attendance|default:"-"|slice:forloop.counter|last }}
-                        </td>
+                        {% for student in students %}
+                        <td>{{forloop.counter}}</td>
+                        <td>{{student.name}}</td>
+                        <td>{{student.roll_number}}</td>
+                        
+                        {% if attendance.period1 %}
+                            <td class="present">P</td>
+                        {% else %}
+                            <td class="absent">A</td>
+                        {% endif %}
+                        
+                        
+                        <td class="absent">A</td>
+                        <td class="present">P</td>
+                        <td class="present">P</td>
+                        <td class="absent">A</td>
+                        <td class="present">P</td>
+                        <td class="present">P</td>
+                        <td>6</td>
+                        </tr>
                         {% endfor %}
-            
-                        <td class="total-present">{{ student.total_present }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
-        </div>
-    </div>
-
-    <!-- JavaScript for Date -->
-    <script>
-        document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
-    </script>
-</body>
-</html>
+                        </tbody>
+                        

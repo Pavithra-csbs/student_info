@@ -29,7 +29,9 @@ def login_view(request):
 
 def index_view(request):
     students = Student.objects.all()
-    return render(request,'attendance_records/index.html',{'students':students})
+    attendance = Attendance.objects.all()
+    print(attendance)
+    return render(request,'attendance_records/index.html',{'students':students,'attendance':attendance,'title':'Attendance Records','style':'tables'})
    
 def logout_view(request):
     logout(request)
@@ -83,7 +85,7 @@ def take_attendance(request):
                 pass
 
     if not known_face_encodings:
-        exit()
+        return False
 
     cap = cv2.VideoCapture(0)
     frame_count = 0  # Track frame count for processing optimization
@@ -117,7 +119,9 @@ def take_attendance(request):
             if student:
                 attendance, created = Attendance.objects.get_or_create(student=student, date=now().date())
                 attendance.status = "P"
+                attendance.period1 = True
                 attendance.save()
+            
                 print(f"Attendance marked for {name}: Present")
             else:
                 print(f"Student {name} not found in database. Skipping attendance update.")
