@@ -113,7 +113,7 @@ def take_attendance(request):
             if best_match_index != -1 and matches[best_match_index] and face_distances[best_match_index] < 0.5:
                 name = known_face_names[best_match_index]
            
-            student = Student.objects.filter(name__iexact=name).first()
+            student = Student.objects.filter(name=name).first()
             if student:
                 attendance, created = Attendance.objects.get_or_create(student=student, date=now().date())
                 attendance.status = "P"
