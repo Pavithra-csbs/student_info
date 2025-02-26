@@ -15,8 +15,6 @@
             height: 100vh;
             color: #333;
         }
-            
-        
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
@@ -49,8 +47,8 @@
 <body>
     <div class="container">
         <h1>Faculty Login</h1>
-        <form action= "{% url 'attendance_records:index' %}" method="POST">
-            
+        <form method="POST">
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="facultyID" class="form-label">Faculty ID</label>
                 <input type="text" class="form-control" id="facultyID" name="username" placeholder="Enter Faculty ID" required>
@@ -59,7 +57,13 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <div>
+                
+                {% for error in form.non_field_errors %}
+                <div class="text-danger">{{error}}</div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
         </form>
     </div>
 </body>

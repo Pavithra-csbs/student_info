@@ -8,15 +8,17 @@ from . models import Attendance,Student
 
 def login_view(request):
     form = LoginForm()
+    print("outstanding")
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        
+        print('Here')
         if form.is_valid():
             
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username,password=password)
-
+            print(user)
+        
             if user is not None:
                 login(request,user)
                 return redirect(reverse("attendance_records:index"))
