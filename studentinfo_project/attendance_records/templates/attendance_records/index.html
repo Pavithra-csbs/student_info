@@ -70,27 +70,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        {% for student in students %}
-                        <td>{{forloop.counter}}</td>
-                        <td>{{student.name}}</td>
-                        <td>{{student.roll_number}}</td>
-                        
-                        {% if attendance.period1 %}
-                            <td class="present">P</td>
-                        {% else %}
-                            <td class="absent">A</td>
-                        {% endif %}
-                        
-                        
-                        <td class="absent">A</td>
-                        <td class="present">P</td>
-                        <td class="present">P</td>
-                        <td class="absent">A</td>
-                        <td class="present">P</td>
-                        <td class="present">P</td>
-                        <td>6</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                        
+                    {% for student in students %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.roll_number }}</td>
+
+        <td class="{% if student.attendance.period1 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period1 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period2 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period2 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period3 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period3 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period4 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period4 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period5 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period5 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period6 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period6 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period7 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period7 %}P{% else %}A{% endif %}
+        </td>
+        <td class="{% if student.attendance.period8 %}present{% else %}absent{% endif %}">
+            {% if student.attendance.period8 %}P{% else %}A{% endif %}
+        </td>
+        <td>{{ student.attendance.total_present }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+                    

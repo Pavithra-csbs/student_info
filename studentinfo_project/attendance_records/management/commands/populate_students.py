@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
         students = [
             "Subiksha", "Naresh"
-]
+        ]
 
         roll_numbers = [
             "24UAD20101", "24UAD20102"

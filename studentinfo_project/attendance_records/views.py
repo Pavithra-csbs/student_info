@@ -5,7 +5,8 @@ from django.urls import reverse
 from . forms import LoginForm
 from . models import Attendance,Student
 from attendance_records.models import Student,Attendance
-
+from django.http import HttpResponse
+from django.utils.timezone import now
 # Create your views here.
 
 def login_view(request):
@@ -29,9 +30,11 @@ def login_view(request):
 
 def index_view(request):
     students = Student.objects.all()
-    attendance = Attendance.objects.all()
-    print(attendance)
-    return render(request,'attendance_records/index.html',{'students':students,'attendance':attendance,'title':'Attendance Records','style':'tables'})
+    for student in students:
+        student.attendance = Attendance.objects.filter(student=student, date=now().date()).first()
+    return render(request, 'attendance_records/index.html', {'students': students})
+
+    
    
 def logout_view(request):
     logout(request)
@@ -67,7 +70,10 @@ def take_attendance(request):
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
-    REFERENCE_DIR = r"D:\subiksha projects\facial recognition\sources"
+    REFERENCE_DIR = r"D:\T037_NEXUSTECH\T037_NEXUSTECH\T037_NEXUSTECH\source\reference_faces"
+    if not os.path.exists(REFERENCE_DIR):
+        return HttpResponse(f"Error: Reference directory '{REFERENCE_DIR}' does not exist.", status=400)
+
     known_face_encodings = []
     known_face_names = []
 
@@ -85,8 +91,8 @@ def take_attendance(request):
                 pass
 
     if not known_face_encodings:
-        return False
-
+        return HttpResponse("No known faces found. Please add reference images.", status=400)
+        
     cap = cv2.VideoCapture(0)
     frame_count = 0  # Track frame count for processing optimization
 
@@ -120,6 +126,13 @@ def take_attendance(request):
                 attendance, created = Attendance.objects.get_or_create(student=student, date=now().date())
                 attendance.status = "P"
                 attendance.period1 = True
+                attendance.period2 = True
+                attendance.period3 = True
+                attendance.period4 = True
+                attendance.period5 = True
+                attendance.period6 = True
+                attendance.period7 = True
+                attendance.period8 = True
                 attendance.save()
             
                 print(f"Attendance marked for {name}: Present")

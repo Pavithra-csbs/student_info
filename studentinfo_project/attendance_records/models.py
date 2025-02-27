@@ -11,6 +11,7 @@ class Student(models.Model):
 class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)  # Link Attendance to a Student
     date = models.DateField(auto_now_add=True)
+    status = models.CharField(max_length=1, choices=[("P", "Present"), ("A", "Absent")], default="A")
 
     # Period-wise attendance tracking
     period1 = models.BooleanField(default=False)
