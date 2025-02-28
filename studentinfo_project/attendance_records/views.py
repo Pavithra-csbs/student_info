@@ -70,7 +70,7 @@ def take_attendance(request):
         transforms.Normalize(mean=[0.5], std=[0.5])
     ])
 
-    REFERENCE_DIR = r"D:\T037_NEXUSTECH\T037_NEXUSTECH\T037_NEXUSTECH\source\reference_faces"
+    REFERENCE_DIR = r"D:\T037_NEXUSTECH\T037_NEXUSTECH\source\reference_faces"
     if not os.path.exists(REFERENCE_DIR):
         return HttpResponse(f"Error: Reference directory '{REFERENCE_DIR}' does not exist.", status=400)
 

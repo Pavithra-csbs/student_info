@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'studentinfo_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'attendance_db',
+        'NAME': 'attendance1_db',
         'USER': 'postgres',
-        'PASSWORD': 'Pm2116',
+        'PASSWORD': 'postgresql',
         'HOST': 'localhost',
         'PORT': '5432',
     }

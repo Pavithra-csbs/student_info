@@ -8,11 +8,11 @@ class Command(BaseCommand):
         Student.objects.all().delete()
 
         students = [
-            "Subiksha", "Naresh"
+            "Subiksha", "Naresh","Srishanth","Sakthi"
         ]
 
         roll_numbers = [
-            "24UAD20101", "24UAD20102"
+            "24UAD247", "24UAD203","24UAD245","24UAD238"
         ]
 
 
